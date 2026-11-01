@@ -1,0 +1,19 @@
+
+# Next.js
+.next/
+out/
+
+# Dependencies
+node_modules/
+
+# Build
+build/
+dist/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
