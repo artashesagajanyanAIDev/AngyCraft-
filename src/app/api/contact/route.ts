@@ -19,9 +19,13 @@ function rateLimit(ip: string): { ok: boolean; retryAfter?: number } {
 
   if (now - lastCleanupAt >= RATE_LIMIT_WINDOW_MS) {
     for (const [key, entry] of ipHits) {
+<<<<<<< HEAD
       if (entry.resetAt <= now) {
         ipHits.delete(key);
       }
+=======
+      if (entry.resetAt <= now) ipHits.delete(key);
+>>>>>>> fa5a4569bd68ce1b57f461e8e3c16fc6f5abebb8
     }
     lastCleanupAt = now;
   }
@@ -84,6 +88,10 @@ const contactSchema = z.object({
   contact: phoneOrEmail,
   topic: z.enum(["order", "masterclass", "corporate", "other"]),
   // Сообщение необязательно. Пустая строка и отсутствие поля разрешены.
+<<<<<<< HEAD
+=======
+  // После проверки message всегда будет строкой, поэтому БД и письмо работают как прежде.
+>>>>>>> fa5a4569bd68ce1b57f461e8e3c16fc6f5abebb8
   message: z
     .string()
     .trim()
@@ -126,7 +134,14 @@ export async function POST(req: Request) {
   try {
     body = await req.json();
   } catch {
+<<<<<<< HEAD
     return NextResponse.json({ error: "Некорректный JSON" }, { status: 400 });
+=======
+    return NextResponse.json(
+      { error: "Некорректный JSON" },
+      { status: 400 },
+    );
+>>>>>>> fa5a4569bd68ce1b57f461e8e3c16fc6f5abebb8
   }
 
   const parsed = contactSchema.safeParse(body);

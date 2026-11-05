@@ -46,13 +46,19 @@ const contactSchema = z.object({
     message: "Выберите тему",
   }),
 
+<<<<<<< HEAD
   // Сообщение необязательно.
+=======
+  // Сообщение теперь необязательное.
+  // Пустая строка разрешена, ограничение в 2000 символов сохранено.
+>>>>>>> fa5a4569bd68ce1b57f461e8e3c16fc6f5abebb8
   message: z
     .string()
     .max(2000, {
       message: "Сообщение слишком длинное",
     }),
 
+<<<<<<< HEAD
   // Согласие на публичную оферту обязательно.
   offerConsent: z.boolean().refine((value) => value === true, {
     message: "Нужно принять публичную оферту",
@@ -61,6 +67,18 @@ const contactSchema = z.object({
   // Согласие на обработку данных обязательно.
   personalDataConsent: z.boolean().refine((value) => value === true, {
     message: "Нужно дать согласие на обработку данных",
+=======
+  offerConsent: z.literal(true, {
+    error: () => ({
+      message: "Нужно принять публичную оферту",
+    }),
+  }),
+
+  personalDataConsent: z.literal(true, {
+    error: () => ({
+      message: "Нужно дать согласие на обработку данных",
+    }),
+>>>>>>> fa5a4569bd68ce1b57f461e8e3c16fc6f5abebb8
   }),
 });
 
@@ -83,10 +101,15 @@ export function ContactForm() {
       contact: "",
       topic: "order",
       message: "",
+<<<<<<< HEAD
 
       // Обе галочки изначально пустые.
       offerConsent: false,
       personalDataConsent: false,
+=======
+      offerConsent: true,
+      personalDataConsent: true,
+>>>>>>> fa5a4569bd68ce1b57f461e8e3c16fc6f5abebb8
     },
   });
 
@@ -114,7 +137,10 @@ export function ContactForm() {
           "Мы свяжемся с вами в ближайшее время.",
       });
 
+<<<<<<< HEAD
       // После отправки форма и галочки сбрасываются.
+=======
+>>>>>>> fa5a4569bd68ce1b57f461e8e3c16fc6f5abebb8
       reset();
       setSubmitted(true);
     } catch (error) {
@@ -320,9 +346,15 @@ export function ContactForm() {
             Я ознакомлен(а) с{" "}
             <Link
               className="text-primary underline-offset-4 hover:underline"
+<<<<<<< HEAD
               href="/personal-data-consent"
             >
               Согласием на обработку персональных данных
+=======
+              href="/privacy"
+            >
+              Политикой обработки персональных данных
+>>>>>>> fa5a4569bd68ce1b57f461e8e3c16fc6f5abebb8
             </Link>{" "}
             и даю согласие на обработку.
             {errors.personalDataConsent && (
